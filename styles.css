@@ -62,6 +62,29 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Fixed cityscape backdrop visible across the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(10, 6, 18, .35) 0%, rgba(10, 6, 18, .55) 60%, rgba(10, 6, 18, .85) 100%),
+    url("assets/cityscape.svg") center / cover no-repeat;
+  pointer-events: none;
+}
+body::after {
+  /* subtle violet wash that ties the photo into the palette */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 50% at 80% 20%, rgba(255, 46, 154, .12), transparent 60%),
+    radial-gradient(60% 60% at 10% 90%, rgba(91, 140, 255, .10), transparent 60%);
+  pointer-events: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--cyber-cyan);
   outline-offset: 3px;
@@ -123,7 +146,15 @@ body {
   padding-block: clamp(72px, 10vw, 140px);
   position: relative;
 }
-.section--alt { background: var(--noir-bg-2); }
+.section--alt {
+  background:
+    linear-gradient(180deg, rgba(18, 10, 31, .82), rgba(10, 6, 18, .92));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.section:not(.section--alt):not(.hero) {
+  background: linear-gradient(180deg, rgba(10, 6, 18, .55), rgba(10, 6, 18, .75));
+}
 .section__head {
   max-width: 720px;
   margin-bottom: clamp(40px, 6vw, 64px);
@@ -287,7 +318,11 @@ body {
   position: relative;
   min-height: 100svh;
   isolation: isolate;
-  background: var(--grad-hero);
+  /* hero is intentionally translucent so the fixed cityscape shows through */
+  background:
+    radial-gradient(120% 80% at 70% 25%, rgba(255, 46, 154, .18), transparent 60%),
+    radial-gradient(90% 60% at 15% 75%, rgba(91, 140, 255, .14), transparent 60%),
+    linear-gradient(180deg, rgba(10, 6, 18, .25) 0%, rgba(10, 6, 18, .55) 100%);
   padding-block: clamp(80px, 12vh, 140px) clamp(60px, 8vh, 96px);
   display: flex;
   align-items: center;
@@ -295,12 +330,13 @@ body {
 }
 .hero__rain {
   position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%;
-  opacity: .55;
+  opacity: .45;
+  mix-blend-mode: screen;
 }
 .hero__vignette {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(120% 80% at 50% 50%, transparent 30%, rgba(10, 6, 18, .55) 75%, rgba(10, 6, 18, .9) 100%);
+    radial-gradient(120% 80% at 50% 50%, transparent 35%, rgba(10, 6, 18, .45) 80%, rgba(10, 6, 18, .85) 100%);
 }
 
 .hero__grid {
