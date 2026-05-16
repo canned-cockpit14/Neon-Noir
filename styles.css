@@ -69,8 +69,8 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(180deg, rgba(10, 6, 18, .35) 0%, rgba(10, 6, 18, .55) 60%, rgba(10, 6, 18, .85) 100%),
-    url("assets/cityscape.svg") center / cover no-repeat;
+    linear-gradient(180deg, rgba(10, 6, 18, .30) 0%, rgba(10, 6, 18, .55) 60%, rgba(10, 6, 18, .85) 100%),
+    url("assets/IMG_8305.png") center / cover no-repeat;
   pointer-events: none;
 }
 body::after {
